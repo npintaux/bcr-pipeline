@@ -24,10 +24,11 @@ resources:
       interval: 24h
 
 jobs:
-- name: send-consumption
+- name: generate-bcr-report
   plan:
     - aggregate:
       - get: on-monday
+        trigger: true
       - get: container-image
       - get: bcr-plugin
       - get: this-repo

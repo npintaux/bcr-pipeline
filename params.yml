@@ -1,0 +1,11 @@
+this_git_repo_uri: https://github.com/RomRider/bcr-pipeline.git
+this_git_repo_branch: master
+# Image used to run the container. Needs to embed at least the cf cli
+container_image_repository: pcfnorm/rootfs
+# Your github access token to avoid being blocked by github
+github_access_token:
+# CF API informations
+cf_api_url:
+# Optionnal if you store the value in crehdub
+cf_api_login:
+cf_api_password:

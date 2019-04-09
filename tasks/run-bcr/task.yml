@@ -8,5 +8,10 @@ inputs:
 outputs:
 - name: report
 
+params:
+  CF_API_URL:
+  CF_API_LOGIN:
+  CF_API_PASSWORD:
+
 run:
   path: this-repo/tasks/run-bcr/task.sh

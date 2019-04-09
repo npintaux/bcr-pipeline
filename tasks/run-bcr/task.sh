@@ -25,5 +25,5 @@ fi
 "${CF_CLI}" bcr --monthly --ai --si >report/report.txt
 
 echo
-echo -e "\e[33mThe report for this platform is:"
+echo -e "\e[33mThe report for this platform is:\e[0m"
 cat report/report.txt
