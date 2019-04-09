@@ -24,4 +24,6 @@ fi
     --skip-ssl-validation
 "${CF_CLI}" bcr --monthly --ai --si >report/report.txt
 
+echo
+echo -e "\e[33mThe report for this platform is:"
 cat report/report.txt
