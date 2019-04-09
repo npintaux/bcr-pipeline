@@ -37,5 +37,5 @@ jobs:
       file: this-repo/tasks/run-bcr/task.yml
       params:
         CF_API_URL: ((cf_api_url))
-        CF_API_LOGIN: ((cf_api_login))
-        CF_API_PASSWORD: ((cf_api_password))
+        CF_API_LOGIN: ((cf_api.username))
+        CF_API_PASSWORD: ((cf_api.password))

@@ -19,8 +19,9 @@ github_access_token:
 # CF API informations
 cf_api_url:
 # Optionnal if you store the value in crehdub
-cf_api_login:
-cf_api_password:
+cf_api:
+  username:
+  password:
 ```
 
 ## Deploying the pipeline
