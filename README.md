@@ -30,7 +30,7 @@ fly -t <YOUR_TARGET> sp -p bcr-report -c pipeline.yml -l <YOUR_PARAM_FILE>
 fly -t <YOUR_TARGET> up -p bcr-report
 ```
 
-## Known issues
+# Known issues
 * **The time resource doesn't produce a resource version initially**
 
   Because of the way the [time resource](https://github.com/concourse/time-resource) works, the `on-monday` will only produce it's first version on the next Monday. a feature   request is opened to fix this issue [here](https://github.com/concourse/time-resource/issues/11)
