@@ -8,7 +8,7 @@ resources:
   - name: bcr-plugin
     type: github-release
     source:
-      owner: avasseur-pivotal/
+      owner: avasseur-pivotal
       repository: cf_get_events
       access_token: ((github_access_token))
 
@@ -19,7 +19,9 @@ resources:
 
   - name: on-monday
     type: time
-    source: {days: [Monday]}
+    source:
+      days: [Monday]
+      interval: 24h
 
 jobs:
 - name: send-consumption
@@ -32,7 +34,7 @@ jobs:
     - task: run-bcr
       image: container-image
       file: this-repo/tasks/run-bcr/task.yml
-      env:
+      params:
         CF_API_URL: ((cf_api_url))
         CF_API_LOGIN: ((cf_api_login))
         CF_API_PASSWORD: ((cf_api_password))

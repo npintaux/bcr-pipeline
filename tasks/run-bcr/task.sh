@@ -15,7 +15,13 @@ if [ -z ${CF_CLI} ]; then
 fi
 
 "${CF_CLI}" install-plugin -f "${BCR_PLUGIN}"
-"${CF_CLI}" login -a "${CF_API_URL}" -u "${CF_API_LOGIN}" -p "${CF_API_PASSWORD}" --skip-ssl-validation
+"${CF_CLI}" login \
+    -a "${CF_API_URL}" \
+    -u "${CF_API_LOGIN}" \
+    -p "${CF_API_PASSWORD}" \
+    -o system \
+    -s system \
+    --skip-ssl-validation
 "${CF_CLI}" bcr --monthly --ai --si >report/report.txt
 
 cat report/report.txt
