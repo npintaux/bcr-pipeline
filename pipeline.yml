@@ -1,0 +1,31 @@
+resources:
+  - name: this-repo
+    type: git
+    source:
+      uri: ((this_git_repo_uri))
+      banch: ((this_git_repo_branch))
+
+  - name: bcr-plugin
+    type: github-release
+    source:
+      owner: avasseur-pivotal/
+      repository: cf_get_events
+      access_token: ((github_access_token))
+
+  - name: container-image
+    type: docker-image
+    source:
+      repository: ((container_image_repository))
+
+  - name: on-monday
+    type: time
+    source: {days: [Monday]}
+
+jobs:
+- name: send-consumption
+  plan:
+    - aggregate:
+      - get: on-monday
+      - get: container-image
+      - get: bcr-plugin
+    - task:
