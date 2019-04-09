@@ -26,7 +26,7 @@ cf_api_password:
 ## Deploying the pipeline
 Then set the pipeline using:
 ```sh
-fly -t <YOUR_TARGET> sp -p bcr-report -c pipeline.yml -l <YOUR_PARAM_FILE
+fly -t <YOUR_TARGET> sp -p bcr-report -c pipeline.yml -l <YOUR_PARAM_FILE>
 fly -t <YOUR_TARGET> up -p bcr-report
 ```
 
