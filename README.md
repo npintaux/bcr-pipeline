@@ -6,8 +6,8 @@ You can then add a task to send the result by [email](https://github.com/pivotal
 
 ![pipeline image](docs/pipeline.jpg)
 
-## Usage
-### Parameter file
+# Usage
+## Parameter file
 Complete the parameter file and store if where you want
 ```yaml
 this_git_repo_uri: https://github.com/RomRider/bcr-pipeline.git
