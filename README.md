@@ -4,7 +4,7 @@ This pipeline's goal is to run the [cf bcr plugin](https://github.com/avasseur-p
 This pipeline will run every monday by default and output the result in the `report` concourse output.
 You can then add a task to send the result by [email](https://github.com/pivotal-cf/email-resource) or on [slack](https://github.com/cloudfoundry-community/slack-notification-resource)
 
-
+![pipeline image](docs/pipeline.jpg)
 
 ## Usage
 ### Parameter file
@@ -23,6 +23,7 @@ cf_api_login:
 cf_api_password:
 ```
 
+## Deploying the pipeline
 Then set the pipeline using:
 ```sh
 fly -t <YOUR_TARGET> sp -p bcr-report -c pipeline.yml -l <YOUR_PARAM_FILE
