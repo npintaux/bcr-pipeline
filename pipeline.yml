@@ -1,27 +1,42 @@
+resource_types:    
+- name: azure-blob
+  type: docker-image
+  source:
+    repository: cfcloudops/azure-blobstore-concourse-resource
+
 resources:
-  - name: this-repo
-    type: git
-    source:
-      uri: ((this_git_repo_uri))
-      banch: ((this_git_repo_branch))
+- name: azure-blobstore
+  type: azure-blob
+  source:
+    storage_account_name: ((storage_account_name))
+    storage_access_key: ((storage_account_key))
+    container: ((container))
+    regexp: reports/report.txt
+    environment: AzureCloud
 
-  - name: bcr-plugin
-    type: github-release
-    source:
-      owner: avasseur-pivotal
-      repository: cf_get_events
-      access_token: ((github_access_token))
+- name: this-repo
+  type: git
+  source:
+    uri: ((this_git_repo_uri))
+    branch: ((this_git_repo_branch))
 
-  - name: container-image
-    type: docker-image
-    source:
-      repository: ((container_image_repository))
+- name: bcr-plugin
+  type: github-release
+  source:
+    owner: avasseur-pivotal
+    repository: cf_get_events
+    access_token: ((github_access_token))
 
-  - name: on-monday
-    type: time
-    source:
-      days: [Monday]
-      interval: 24h
+- name: container-image
+  type: docker-image
+  source:
+    repository: ((container_image_repository))
+
+- name: on-monday
+  type: time
+  source:
+    days: [Monday]
+    interval: 24h
 
 jobs:
 - name: generate-bcr-report
@@ -39,3 +54,6 @@ jobs:
         CF_API_URL: ((cf_api_url))
         CF_API_LOGIN: ((cf_api.username))
         CF_API_PASSWORD: ((cf_api.password))
+    - put: azure-blobstore
+      params: { file: reports/report.txt }
+

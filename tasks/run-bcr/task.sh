@@ -22,8 +22,15 @@ fi
     -o system \
     -s system \
     --skip-ssl-validation
-"${CF_CLI}" bcr --monthly --ai --si >report/report.txt
+"${CF_CLI}" bcr --monthly --ai --si >reports/report.txt
+
+# Setting the timestamp in the filename to make the file unique
+# export CURRENT_TIMESTAMP=$(date +"%Y%m%d%H%S")
+# mv reports/report.txt reports/bcr-report-$CURRENT_TIMESTAMP.txt
+find .
 
 echo
 echo -e "\e[33mThe report for this platform is:\e[0m"
-cat report/report.txt
+# cat reports/bcr-report-$CURRENT_TIMESTAMP.txt
+cat reports/report.txt
+
