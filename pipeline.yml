@@ -55,5 +55,5 @@ jobs:
         CF_API_LOGIN: ((cf_api.username))
         CF_API_PASSWORD: ((cf_api.password))
     - put: azure-blobstore
-      params: { file: report.txt }
+      params: { file: ./report.txt }
 
