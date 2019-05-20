@@ -11,7 +11,7 @@ resources:
     storage_account_name: ((storage_account_name))
     storage_access_key: ((storage_account_key))
     container: ((container))
-    regexp: report/report.txt
+    regexp: report.txt
     environment: AzureCloud
 
 - name: this-repo
@@ -55,5 +55,5 @@ jobs:
         CF_API_LOGIN: ((cf_api.username))
         CF_API_PASSWORD: ((cf_api.password))
     - put: azure-blobstore
-      params: { file: report/report.txt }
+      params: { file: report.txt }
 
