@@ -1,13 +1,32 @@
-this_git_repo_uri: https://github.com/RomRider/bcr-pipeline.git
+# Git repository details
+this_git_repo_uri: https://github.com/npintaux/bcr-pipeline.git
 this_git_repo_branch: master
+
+# Your github access token to avoid being blocked by github
+github_access_token: [*** TO-BE-REPLACED ***]
+
 # Image used to run the container. Needs to embed at least the cf cli
 container_image_repository: pcfnorm/rootfs
-# Your github access token to avoid being blocked by github
-github_access_token:
+
 # CF API informations
-cf_api_url:
+cf_api_url: [*** TO-BE-REPLACED ***]
 # Optionnal if you store the value in crehdub
 cf_api:
-  username:
-  password:
+  username: [*** TO-BE-REPLACED ***]
+  password: [*** TO-BE-REPLACED ***]
+
+# Azure storage details
+storage_account_name: [*** TO-BE-REPLACED ***]
+storage_account_key: [*** TO-BE-REPLACED ***]
+container: [*** TO-BE-REPLACED ***] 
+
+# SMTP server details
+smtp-server: [*** TO-BE-REPLACED ***]
+smtp-port: [*** TO-BE-REPLACED ***] # must be a string. ex: "2525" 
+smtp-username: [*** TO-BE-REPLACED ***]
+smtp-password: [*** TO-BE-REPLACED ***] 
+email-from: [*** TO-BE-REPLACED ***]
+email-to:  [*** TO-BE-REPLACED ***] # is an array of e-mail addresses. Example: ["test@domain1.io","admin@domain2.io"]
+email-subject-text: "Latest automated BCR report for my platform"
+email-body-text: "The latest automated BCR report for my platform is attached."
 
