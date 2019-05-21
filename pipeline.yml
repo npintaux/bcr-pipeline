@@ -40,7 +40,7 @@ resources:
 - name: on-monday
   type: time
   source:
-    days: [Monday, Tuesday, Wednesday, Thursday, Friday]
+    days: [Monday]
     interval: 24h
 
 - name: send-an-email

@@ -1,8 +1,12 @@
 # BCR Pipeline
 
-This pipeline's goal is to run the [cf bcr plugin](https://github.com/avasseur-pivotal/cf_get_events) on a weekly basis and display the result in the task.
+This pipeline is based on the excellent work of Jerome Wiedemann: https://github.com/RomRider/bcr-pipeline.
+
+Its goal is to run the [cf bcr plugin](https://github.com/avasseur-pivotal/cf_get_events) on a weekly basis and make it available to the team in charge of checking the amount of resources used on a given foundation.
+Based on Jerome's comment on the original project, an [email task](https://github.com/pivotal-cf/email-resource) has been added. The report is also timestamped and archived into an Azure Blob Storage.
+
 This pipeline will run every monday by default and output the result in the `report` concourse output.
-You can then add a task to send the result by [email](https://github.com/pivotal-cf/email-resource) or on [slack](https://github.com/cloudfoundry-community/slack-notification-resource)
+
 
 ![pipeline image](docs/pipeline.jpg)
 
@@ -10,7 +14,7 @@ You can then add a task to send the result by [email](https://github.com/pivotal
 ## Parameter file
 Complete the parameter file and store if where you want
 ```yaml
-this_git_repo_uri: https://github.com/RomRider/bcr-pipeline.git
+this_git_repo_uri: https://github.com/npintaux/bcr-pipeline.git
 this_git_repo_branch: master
 # Image used to run the container. Needs to embed at least the cf cli
 container_image_repository: pcfnorm/rootfs
@@ -22,6 +26,21 @@ cf_api_url:
 cf_api:
   username:
   password:
+
+# Azure storage details
+storage_account_name: 
+storage_account_key: 
+container:
+
+# SMTP server details
+smtp-server: 
+smtp-port: # must be a string. ex: "2525"
+smtp-username: 
+smtp-password: 
+email-from:
+email-to:  # is an array of e-mail addresses. Example: ["test@domain1.io","admin@domain2.io"]
+email-subject-text: "Latest automated BCR report for my platform"
+email-body-text: "The latest automated BCR report for my platform is attached."
 ```
 
 ## Deploying the pipeline
