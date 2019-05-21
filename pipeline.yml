@@ -3,6 +3,11 @@ resource_types:
   type: docker-image
   source:
     repository: cfcloudops/azure-blobstore-concourse-resource
+- name: email
+  type: docker-image
+  source:
+    repository: pcfseceng/email-resource
+    tag: latest
 
 resources:
 - name: azure-blobstore
@@ -11,7 +16,7 @@ resources:
     storage_account_name: ((storage_account_name))
     storage_access_key: ((storage_account_key))
     container: ((container))
-    regexp: report/report.txt
+    regexp: report/bcr-report-([0-9\.]+).txt
     environment: AzureCloud
 
 - name: this-repo
@@ -35,8 +40,19 @@ resources:
 - name: on-monday
   type: time
   source:
-    days: [Monday]
+    days: [Monday, Tuesday, Wednesday, Thursday, Friday]
     interval: 24h
+
+- name: send-an-email
+  type: email
+  source:
+    smtp:
+      host: ((smtp-server))
+      port: ((smtp-port))
+      username: ((smtp-username))
+      password: ((smtp-password))
+    from: ((email-from))
+    to: ((email-to))
 
 jobs:
 - name: generate-bcr-report
@@ -54,6 +70,11 @@ jobs:
         CF_API_URL: ((cf_api_url))
         CF_API_LOGIN: ((cf_api.username))
         CF_API_PASSWORD: ((cf_api.password))
+    - put: send-an-email
+      params:
+        subject_text: ((email-subject-text))
+        body_text: ((email-body-text))
+        attachment_globs: ["report/*.txt"]
     - put: azure-blobstore
-      params: { file: report/report.txt }
+      params: { file: report/bcr-report-*.txt }
 
