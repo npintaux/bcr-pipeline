@@ -25,12 +25,12 @@ fi
 "${CF_CLI}" bcr --monthly --ai --si >report/report.txt
 
 # Setting the timestamp in the filename to make the file unique
-# export CURRENT_TIMESTAMP=$(date +"%Y%m%d%H%S")
-# mv reports/report.txt reports/bcr-report-$CURRENT_TIMESTAMP.txt
+export CURRENT_TIMESTAMP=$(date +"%Y%m%d%H%S")
+mv report/report.txt report/bcr-report-$CURRENT_TIMESTAMP.txt
 find .
 
 echo
 echo -e "\e[33mThe report for this platform is:\e[0m"
 # cat reports/bcr-report-$CURRENT_TIMESTAMP.txt
-cat report/report.txt
+cat report/bcr-report-$CURRENT_TIMESTAMP.txt
 
